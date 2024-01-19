@@ -1,14 +1,12 @@
 <script setup lang="ts">
-
-import {Redis} from "ioredis"
+import {config} from "launcher-api";
 
 
 const val = ref("")
 
 onMounted(async () => {
-  const redis = new Redis(6379, 'localhost')
-  const setRes =  redis.set("name", "12312312")
-  console.log(setRes)
+  await config.set("name", "Launcher Developer")
+  val.value = await config.get("name")
 })
 
 </script>
